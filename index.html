@@ -1,24 +1,96 @@
-
 <html>
-<head>
-<!-- Это заголовок страницы. -->
-<!-- Yandex.RTB -->
-<script>window.yaContextCb=window.yaContextCb||[]</script>
-<script src="https://yandex.ru/ads/system/context.js" async></script>
-<title>Пример HTML-страницы c rtb-video dsp</title>
-<meta charset="utf-8">
-</head>
-<body>
-<!-- Это раздел с контентом сайта. -->
-<!-- Yandex.RTB R-A-2070026-1 -->
-<div id="yandex_rtb_R-A-2070026-1" style="width: 600px; height: 480px; margin: auto;"></div>
-<script>window.yaContextCb.push(()=>{
-  setTimeout(() => {
-    Ya.Context.AdvManager.render({
-      renderTo: 'yandex_rtb_R-A-2070026-1',
-      blockId: 'R-A-2070026-1'
-    })
-  }, 500);
-})</script>
-</body>
+  <head>
+  <script async src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
+    <script>
+          var adUnits = [{
+            code: 'banner',
+            mediaTypes: {
+              native: {
+        sendTargetingKeys: false,
+            rendererUrl: "main.js",
+            ortb: {
+                assets: [
+                {
+                        id: 1,
+                        img: {
+                            type: 3,
+                            w: 150,
+                            h: 50,
+                        }
+                    },
+                    {
+                        id: 2,
+                        required: 1,
+                        title: {
+                            len: 800,
+                        }
+                    }
+                ]
+            }
+          }
+        }
+            ,
+            bids: [{
+              bidder: 'yandex',
+              params: {
+                pageId: 2070024,
+                impId: 4
+              }
+
+            
+        }]}
+      ];
+
+          var pbjs = pbjs || {};
+          pbjs.que = pbjs.que || [];
+    </script>
+    <script
+      type="text/javascript"
+      src="https://banners.adfox.ru/230815/adfox/1675709/f5a1bc16746fb5a557d6495fd5d6dd90_prebid8.9.0.js"
+      async
+    ></script>
+
+    <script>
+      pbjs.que.push(function () {
+        pbjs.addAdUnits(adUnits);
+      });
+
+      // you could instead pass an array of adUnits
+      // to getHighestCpmBids() if desired
+      function renderAllAdUnits() {
+        var winners = pbjs.getHighestCpmBids();
+        for (var i = 0; i < winners.length; i++) {
+          renderOne(winners[i]);
+        }
+      }
+
+      function renderOne(winningBid) {
+        if (winningBid && winningBid.adId) {
+          var div = document.getElementById(winningBid.adUnitCode);
+          if (div) {		
+			var pbNativeTagData = {};
+			pbNativeTagData.pubUrl = document.location.href; 
+			pbNativeTagData.adId = winningBid.adId;
+			pbNativeTagData.requestAllAssets = true;
+			window.pbNativeTag.renderNativeAd(pbNativeTagData);
+          }
+        }
+      }
+    </script>
+
+    <script>
+      pbjs.que.push(function () {
+        pbjs.requestBids({
+          timeout: 2000,
+          bidsBackHandler: renderAllAdUnits,
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <h2>Ad Serverless Test Page</h2>
+
+    <div id="banner"></div>
+  </body>
 </html>
