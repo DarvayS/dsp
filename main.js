@@ -4,7 +4,7 @@
 // - renderAd() must return a fully resolved and ready-to-display block of HTML that will be appended to the body
 //
 window.renderAd=function(data){
-	let template = "<div class=\"sponsored-post\"><div class=\"thumbnail\"><\/div><div class=\"content\"><h1> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\"><img src=\"##hb_native_icon##\"><br>выше иконка, ниже картинка<img src=\"##hb_native_image##\"><\/a> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">##hb_native_title##<\/a><\/h1><p>##hb_native_body##<\/p> <div class=\"attribution\"> ##hb_native_brand## <\/div> <\/div> <\/div>";
+	let template = "<div class=\"sponsored-post\"><div class=\"thumbnail\"><\/div><div class=\"content\"><h1> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\"><img src=\"##hb_native_icon##\"><br>выше иконка, ниже картинка<br><img src=\"##hb_native_image##\"><\/a> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">##hb_native_title##<\/a><\/h1><p>##hb_native_body##<\/p> <div class=\"attribution\"> ##hb_native_brand## <\/div> <\/div> <\/div>";
 	const map = {
 	    title: 'hb_native_title',
 	    body: 'hb_native_body',
