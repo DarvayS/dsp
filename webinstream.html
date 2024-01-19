@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Instream video Stand</title>
+  <style>
+    #slot {
+      width: 500px;
+      height: 300px;
+    }
+
+    #videoSlot {
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+  <script src="https://yandex.ru/ads/system/adsdk.js"></script>
+  <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <button onclick="play();">TEST</button>
+  <div class="content">
+    <div id="slot" style="position:relative;">
+      <video id="videoSlot" controls>
+        <source type="video/mp4" src="https://banners.adfox.ru/200320/adfox/1262905/y2mate.com-CHANEL20162017CruiseAdCampaign_b7rtq8ZR2o0_360p.mp4">
+      </video>
+    </div>
+    <script>
+      var adFoxParameters = {
+          ownerId: '326448',
+          params: {
+            p1: 'dauzs',
+            p2: 'gmjh'
+          }
+        };
+    function play() {
+      ya.videoAd.play({
+          videoSlot: videoSlot,
+          slot: slot,
+          config: {
+            adFoxParameters
+          }
+        })
+        .then(function() {
+          console.log('playing complete');
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+      }
+
+    </script>
+  </div>
+</body>
+
+</html>
